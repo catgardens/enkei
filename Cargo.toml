@@ -12,6 +12,8 @@ categories = ["command-line-utilities"]
 edition = "2021"
 
 [dependencies]
+clap = { version = "4.5.7", features = [ "derive" ] }
+clap_complete = "4.5.5"
 cursive = "0.20.0"
 log = "0.4.21"
 
