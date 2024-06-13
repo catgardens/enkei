@@ -1,3 +1,41 @@
 # enkei
 
+```odin
+State :: enum {
+    New, // issue
+    InProgress, // draft pr
+    Ready, // pr created
+    Done, // pr merged
+}
+
+Board :: struct {
+    items: Item[],
+}
+
+Item :: struct {
+    state: State,
+    name: String,
+    desc: String,
+    priority: stats::Priority,
+    size: stats::Size,
+}
+
+mod stats {
+    Priority :: enum {
+        Low,
+        Medium,
+        High,
+        Urgent,
+    }
+
+    Size :: enum {
+        Tiny,
+        Small,
+        Medium,
+        Large,
+        Massive,
+    }
+}
+```
+
 vim: ft=markdown
