@@ -1,6 +1,6 @@
 {
-  pkgs,
   lib,
+  ncurses,
   rustPlatform,
   rev ? "dirty",
 }:
@@ -28,7 +28,7 @@ rustPlatform.buildRustPackage {
     BUILD_REV = rev;
   };
 
-  buildInputs = [pkgs.ncurses];
+  nativeBuildInputs = [ ncurses ];
 
   meta = {
     inherit (p) description homepage;
