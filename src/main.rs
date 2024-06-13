@@ -2,10 +2,11 @@ use clap::{CommandFactory, Parser};
 use clap_complete::generate;
 use log::trace;
 
-mod cli;
-use cli::{Cli, Commands};
-
 mod app;
+mod board;
+mod item;
+
+use app::cli::{Cli, Commands};
 
 fn main() -> anyhow::Result<()> {
     saku_logger::init();
@@ -25,7 +26,8 @@ fn main() -> anyhow::Result<()> {
         }
         _ => {
             let mut app = app::App::new();
-            app.start()
+            app.start()?;
+            Ok(())
         }
     }
 }
