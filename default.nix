@@ -2,6 +2,7 @@
   lib,
   ncurses,
   rustPlatform,
+  installShellFiles,
   rev ? "dirty",
 }:
 let
@@ -34,6 +35,14 @@ rustPlatform.buildRustPackage {
   };
 
   buildInputs = [ ncurses.dev ];
+  nativeBuildInputs = [ installShellFiles ];
+
+  postInstall = ''
+    installShellCompletion --cmd enkei \
+      --bash <($out/bin/enkei completions bash) \
+      --fish <($out/bin/enkei completions fish) \
+      --zsh <($out/bin/enkei completions zsh)
+  '';
 
   meta = {
     inherit (p) description homepage;
