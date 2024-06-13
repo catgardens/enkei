@@ -1,4 +1,4 @@
-use crate::Board;
+use crate::board::Board;
 use crate::app::App;
 
 impl App {

@@ -5,9 +5,9 @@ use log::trace;
 mod cli;
 use cli::{Cli, Commands};
 
-mod tui;
+mod app;
 
-fn main() {
+fn main() -> anyhow::Result<()> {
     saku_logger::init();
     trace!("logger init");
 
@@ -21,10 +21,11 @@ fn main() {
             let name = cmd.get_name().to_string();
             eprintln!("Generating completions for {shell}");
             generate(shell, &mut cmd, name, &mut std::io::stdout());
-            std::process::exit(0);
+            Ok(())
         }
         _ => {
-            tui::open();
+            let mut app = app::App::new();
+            app.start()
         }
     }
 }
