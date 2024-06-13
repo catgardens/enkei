@@ -1,6 +1,5 @@
 {
   lib,
-  ncurses,
   rustPlatform,
   installShellFiles,
   rev ? "dirty",
@@ -34,7 +33,6 @@ rustPlatform.buildRustPackage {
     BUILD_REV = rev;
   };
 
-  buildInputs = [ ncurses.dev ];
   nativeBuildInputs = [ installShellFiles ];
 
   postInstall = ''
