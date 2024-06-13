@@ -13,6 +13,7 @@ edition = "2021"
 
 [dependencies]
 cursive = "0.20.0"
+log = "0.4.21"
 
 [dependencies.saku_logger]
 git = "https://github.com/comfysage/saku?dir=log"
