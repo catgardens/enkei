@@ -4,6 +4,7 @@
   cargo-shear,
   callPackage,
   rust-analyzer,
+  ncurses,
 }:
 let
   mainPkg = callPackage ./default.nix { };
@@ -15,5 +16,6 @@ mainPkg.overrideAttrs (oa: {
     rustfmt
     rust-analyzer
     cargo-shear
+    ncurses.dev
   ] ++ (oa.nativeBuildInputs or [ ]);
 })
