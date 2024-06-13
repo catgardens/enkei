@@ -5,6 +5,8 @@ use log::trace;
 mod cli;
 use cli::{Cli, Commands};
 
+mod tui;
+
 fn main() {
     saku_logger::init();
     trace!("logger init");
@@ -22,7 +24,7 @@ fn main() {
             std::process::exit(0);
         }
         _ => {
-            println!("Hello, world!");
+            tui::open();
         }
     }
 }
