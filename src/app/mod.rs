@@ -1,8 +1,9 @@
 use crate::board::Board;
 
-pub(crate) mod themes;
+pub mod cli;
 mod impl_self;
 mod impl_view;
+mod themes;
 
 pub struct App {
     pub board: Board,

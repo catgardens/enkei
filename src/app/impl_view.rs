@@ -1,6 +1,4 @@
-use crate::app::App;
-
-use crate::app::themes;
+use crate::app::{themes, App};
 
 use cursive::views::TextView;
 
