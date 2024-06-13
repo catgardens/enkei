@@ -12,3 +12,4 @@ categories = ["command-line-utilities"]
 edition = "2021"
 
 [dependencies]
+cursive = "0.20.0"

@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   rustPlatform,
   rev ? "dirty",
@@ -26,6 +27,8 @@ rustPlatform.buildRustPackage {
   env = {
     BUILD_REV = rev;
   };
+
+  buildInputs = [pkgs.ncurses];
 
   meta = {
     inherit (p) description homepage;
