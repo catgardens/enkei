@@ -22,7 +22,8 @@ fn main() {
             std::process::exit(0);
         }
         _ => {
-            println!("Hello, world!");
+            // open tui app
+            trace!("starting tui");
         }
     }
 }
