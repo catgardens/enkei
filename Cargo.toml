@@ -22,7 +22,7 @@ log = "0.4.21"
 [dependencies.cursive]
 version = "0.20.0"
 default-features = false
-features = ["crossterm-backend"]
+features = ["crossterm-backend", "toml"]
 
 [dependencies.saku_logger]
 git = "https://github.com/comfysage/saku"
