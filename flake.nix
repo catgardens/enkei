@@ -23,5 +23,11 @@
       devShells = forAllSystems (pkgs: {
         default = pkgs.callPackage ./shell.nix { };
       });
+
+      overlays.default = _: prev: {
+        enkei = prev.callPackage ./default.nix { rev = self.dirtyRev or self.rev; };
+      };
+
+      formatter = forAllSystems (pkgs: pkgs.nixfmt-rfc-style);
     };
 }
