@@ -450,7 +450,7 @@ checksum = "7a66a03ae7c801facd77a29370b4faec201768915ac14a721ba36f20bc9c209b"
 [[package]]
 name = "saku_logger"
 version = "0.1.0"
-source = "git+https://github.com/comfysage/saku?dir=log#725ed95e9c9bb090da9b123a1fcde8c86f872109"
+source = "git+https://github.com/comfysage/saku#725ed95e9c9bb090da9b123a1fcde8c86f872109"
 dependencies = [
  "env_logger",
  "log",

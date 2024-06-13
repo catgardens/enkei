@@ -22,7 +22,12 @@ rustPlatform.buildRustPackage {
     );
   };
 
-  cargoLock.lockFile = ./Cargo.lock;
+  cargoLock = {
+    lockFile = ./Cargo.lock;
+    outputHashes = {
+      "saku_logger-0.1.0" = "sha256-2NDk+RFpwg9JXL3YIQj3PT4qeI51G8h/wIYzVgu5GJc=";
+    };
+  };
 
   env = {
     BUILD_REV = rev;
