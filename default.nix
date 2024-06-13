@@ -28,7 +28,7 @@ rustPlatform.buildRustPackage {
     BUILD_REV = rev;
   };
 
-  nativeBuildInputs = [ ncurses ];
+  buildInputs = [ ncurses.dev ];
 
   meta = {
     inherit (p) description homepage;
