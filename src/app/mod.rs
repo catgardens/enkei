@@ -1,6 +1,12 @@
 use crate::board::Board;
 use directories::ProjectDirs;
 
+/// return struct with default directories
+///
+/// # Errors
+///
+/// This function will return an error if a path cannot be formed,
+/// e.g. xdg directories do not exist
 pub fn project() -> anyhow::Result<ProjectDirs> {
     ProjectDirs::from("dev", "catgardens", "enkei")
         .ok_or(anyhow::format_err!("can not construct project directories"))
