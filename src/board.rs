@@ -11,6 +11,13 @@ pub struct Board {
 }
 
 impl Board {
+    pub fn add(&mut self, item: &Item) -> anyhow::Result<()> {
+        self.items.push(item.clone());
+        Ok(())
+    }
+}
+
+impl Board {
     fn state_path() -> anyhow::Result<PathBuf> {
         Ok(project()?.data_dir().join("state.json"))
     }
