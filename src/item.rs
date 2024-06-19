@@ -1,3 +1,6 @@
+use serde::{Deserialize, Serialize};
+
+#[derive(Serialize, Deserialize)]
 #[derive(Debug, Default)]
 pub enum State {
     #[default]
@@ -6,6 +9,7 @@ pub enum State {
     Ready,      // pr created
     Done,       // pr merged
 }
+#[derive(Serialize, Deserialize)]
 #[derive(Debug, Default)]
 pub enum Priority {
     Low,
@@ -14,6 +18,7 @@ pub enum Priority {
     High,
     Urgent,
 }
+#[derive(Serialize, Deserialize)]
 #[derive(Debug, Default)]
 pub enum Size {
     Tiny,
@@ -24,6 +29,7 @@ pub enum Size {
     Massive,
 }
 
+#[derive(Serialize, Deserialize)]
 #[derive(Debug, Default)]
 pub struct Item {
     pub name: String,
