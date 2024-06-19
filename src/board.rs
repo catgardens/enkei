@@ -1,5 +1,8 @@
+use serde::{Deserialize, Serialize};
+
 use crate::item::Item;
 
+#[derive(Serialize, Deserialize)]
 #[derive(Debug, Default)]
 pub struct Board {
     pub items: Vec<Item>,
