@@ -7,6 +7,13 @@ use log::trace;
 use super::project;
 
 impl App {
+    /// start enkei tui application
+    ///
+    /// # Errors
+    ///
+    /// This function will return an error if:
+    /// - a path to config files cannot be constructed
+    /// - the theme config can not be parsed
     pub fn start(&mut self) -> anyhow::Result<()> {
         let mut s = cursive::default();
 
