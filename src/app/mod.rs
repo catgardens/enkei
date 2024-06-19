@@ -17,6 +17,7 @@ mod impl_self;
 mod impl_view;
 mod themes;
 
+#[derive(Debug, Default)]
 pub struct App {
     pub board: Board,
     pub focus: usize,
