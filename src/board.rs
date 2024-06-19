@@ -16,9 +16,12 @@ impl Board {
     }
     pub fn load_state() -> anyhow::Result<Self> {
         let path = Self::state_path()?;
-        let contents = std::fs::read_to_string(&path)?;
-        let v = serde_json::from_str(&contents)?;
-        Ok(v)
+        if path.exists() {
+            let contents = std::fs::read_to_string(&path)?;
+            let v = serde_json::from_str(&contents)?;
+            return Ok(v);
+        }
+        Ok(Self::default())
     }
     pub fn save_state(&self) -> anyhow::Result<()> {
         let path = Self::state_path()?;

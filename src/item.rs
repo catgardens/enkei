@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
-#[derive(Debug, Default)]
+#[derive(Debug, Default, Clone)]
 pub enum State {
     #[default]
     New,        // issue
@@ -10,7 +10,7 @@ pub enum State {
     Done,       // pr merged
 }
 #[derive(Serialize, Deserialize)]
-#[derive(Debug, Default)]
+#[derive(Debug, Default, Clone)]
 pub enum Priority {
     Low,
     #[default]
@@ -19,7 +19,7 @@ pub enum Priority {
     Urgent,
 }
 #[derive(Serialize, Deserialize)]
-#[derive(Debug, Default)]
+#[derive(Debug, Default, Clone)]
 pub enum Size {
     Tiny,
     Small,
@@ -30,7 +30,7 @@ pub enum Size {
 }
 
 #[derive(Serialize, Deserialize)]
-#[derive(Debug, Default)]
+#[derive(Debug, Default, Clone)]
 pub struct Item {
     pub name: String,
     pub desc: String,
