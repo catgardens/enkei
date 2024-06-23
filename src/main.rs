@@ -2,10 +2,13 @@ use clap::{CommandFactory, Parser};
 use clap_complete::generate;
 use log::trace;
 
-mod cli;
-use cli::{Cli, Commands};
+mod app;
+mod board;
+mod item;
 
-fn main() {
+use app::cli::{Cli, Commands};
+
+fn main() -> anyhow::Result<()> {
     saku_logger::init();
     trace!("logger init");
 
@@ -19,10 +22,11 @@ fn main() {
             let name = cmd.get_name().to_string();
             eprintln!("Generating completions for {shell}");
             generate(shell, &mut cmd, name, &mut std::io::stdout());
-            std::process::exit(0);
+            Ok(())
         }
         _ => {
-            println!("Hello, world!");
+            app::start()?;
+            Ok(())
         }
     }
 }
