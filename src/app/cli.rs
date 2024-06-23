@@ -2,7 +2,7 @@ use clap::{Parser, Subcommand};
 use clap_complete::Shell;
 
 #[derive(Debug, Parser)]
-#[command(name = "enkei", about, version, author)]
+#[command(name = env!("CARGO_PKG_NAME"), about, version, author)]
 pub struct Cli {
     #[command(subcommand)]
     pub command: Option<Commands>,
