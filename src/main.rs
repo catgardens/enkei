@@ -25,8 +25,7 @@ fn main() -> anyhow::Result<()> {
             Ok(())
         }
         _ => {
-            let mut app = app::App::new();
-            app.start()?;
+            app::start()?;
             Ok(())
         }
     }
