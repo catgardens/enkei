@@ -1,8 +1,7 @@
-use std::path::PathBuf;
-
 use serde::{Deserialize, Serialize};
 
-use crate::{app::project, item::Item};
+use crate::app::state_file;
+use crate::item::Item;
 
 #[derive(Serialize, Deserialize)]
 #[derive(Debug, Default)]
@@ -18,11 +17,8 @@ impl Board {
 }
 
 impl Board {
-    fn state_path() -> anyhow::Result<PathBuf> {
-        Ok(project()?.data_dir().join("state.json"))
-    }
     pub fn load_state() -> anyhow::Result<Self> {
-        let path = Self::state_path()?;
+        let path = state_file()?;
         if path.exists() {
             let contents = std::fs::read_to_string(&path)?;
             let v = serde_json::from_str(&contents)?;
@@ -31,7 +27,7 @@ impl Board {
         Ok(Self::default())
     }
     pub fn save_state(&self) -> anyhow::Result<()> {
-        let path = Self::state_path()?;
+        let path = state_file()?;
         let contents = serde_json::to_string(&self)?;
         std::fs::write(path, contents)?;
         Ok(())

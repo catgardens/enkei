@@ -14,9 +14,17 @@ use directories::ProjectDirs;
 ///
 /// This function will return an error if a path cannot be formed,
 /// e.g. xdg directories do not exist
-pub fn project() -> anyhow::Result<ProjectDirs> {
+pub fn project_dirs() -> anyhow::Result<ProjectDirs> {
     ProjectDirs::from("dev", "catgardens", "enkei")
         .ok_or(anyhow::format_err!("can not construct project directories"))
+}
+
+pub fn theme_file() -> anyhow::Result<PathBuf> {
+    Ok(project_dirs()?.config_dir().join("theme.toml"))
+}
+
+pub fn state_file() -> anyhow::Result<PathBuf> {
+    Ok(project_dirs()?.data_dir().join("state.json"))
 }
 
 pub mod cli;
@@ -50,7 +58,7 @@ pub fn start() -> anyhow::Result<()> {
     );
     s.add_layer(layout);
 
-    let theme_path = project()?.config_dir().join("theme.toml");
+    let theme_path = theme_file()?;
     let theme = theme_path
         .to_str()
         .ok_or(anyhow::format_err!("could not get path to theme.toml"))?;
