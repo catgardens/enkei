@@ -46,11 +46,18 @@ pub struct App {
 /// - a path to config files cannot be constructed
 /// - the theme config can not be parsed
 pub fn start() -> anyhow::Result<()> {
-    let mut app = App::new();
+    let mut app = App::default();
     app.init()?;
     let mut s = cursive::default();
 
     s.add_global_callback('q', cursive::Cursive::quit);
+    s.add_global_callback('a', |s| {
+        let item = crate::item::Item {
+            name: "new item".to_string(),
+            ..Default::default()
+        };
+        s.call_on_name("Main", |v: &mut App| v.board.add(&item));
+    });
 
     let layout = NamedView::new(
         "Frame",
@@ -74,6 +81,8 @@ pub fn start() -> anyhow::Result<()> {
 
     s.run();
 
+    // save state on every loop, this means that the staet will always be saved
+    // even if the application crashes or is killed (hopefully)
     s.call_on_name("Main", |app: &mut App| app.destroy());
     Ok(())
 }
