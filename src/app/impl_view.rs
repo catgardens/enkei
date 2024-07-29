@@ -1,5 +1,5 @@
-use cursive::{Vec2, XY};
 use cursive::view::View;
+use cursive::{Vec2, XY};
 
 use crate::{board::Board, item::Item};
 
@@ -26,7 +26,7 @@ impl View for Board {
 
 impl View for App {
     fn draw(&self, printer: &cursive::Printer) {
-        self.board.draw(&printer);
+        self.board.draw(printer);
     }
     fn required_size(&mut self, _constraint: cursive::Vec2) -> Vec2 {
         Vec2::new(90, 20)
