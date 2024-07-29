@@ -1,22 +1,20 @@
+use log::{error, info};
 use serde::{Deserialize, Serialize};
+use std::fs;
 
 use crate::app::state_file;
 use crate::item::Item;
 
-#[derive(Serialize, Deserialize)]
-#[derive(Debug, Default)]
+#[derive(Serialize, Deserialize, Debug, Default)]
 pub struct Board {
     pub items: Vec<Item>,
 }
 
 impl Board {
-    pub fn add(&mut self, item: &Item) -> anyhow::Result<()> {
+    pub fn add(&mut self, item: &Item) {
         self.items.push(item.clone());
-        Ok(())
     }
-}
 
-impl Board {
     pub fn load_state() -> anyhow::Result<Self> {
         let path = state_file()?;
         if path.exists() {
@@ -26,10 +24,28 @@ impl Board {
         }
         Ok(Self::default())
     }
+
     pub fn save_state(&self) -> anyhow::Result<()> {
         let path = state_file()?;
         let contents = serde_json::to_string(&self)?;
-        std::fs::write(path, contents)?;
+
+        if let Some(parent) = path.parent() {
+            if let Err(e) = fs::create_dir_all(parent) {
+                error!("failed to create directories: {:?}", e);
+                return Err(e.into());
+            }
+        }
+
+        match fs::write(path, contents) {
+            Ok(()) => {
+                info!("state saved");
+            }
+            Err(e) => {
+                error!("failed to write state to file: {:?}", e);
+                return Err(e.into());
+            }
+        }
+
         Ok(())
     }
 }
